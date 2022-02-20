@@ -30,10 +30,10 @@ const Navbar = () => {
         <div className="spf__navbar-menu_container scale-up-center">
           <div className="spf__navbar-menu_container-links">
             <p><a href="#home">Home</a></p>
-            <p><a href="#blog">What is SPF?</a></p>
+            <p><a href="#program">What is SPF?</a></p>
             <p><a href="#possibility">Open AI</a></p>
             <p><a href="#features">Case Studies</a></p>
-            <p><a href="#blog">Library</a></p>
+            <p><a href="#program">Library</a></p>
           </div>
           <div className="spf__navbar-menu_container-links-sign">
           <a href="#" class="donate">DONATE</a>
