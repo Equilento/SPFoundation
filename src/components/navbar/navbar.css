@@ -51,8 +51,8 @@
 .spf__navbar-sign button,
 .spf__navbar-menu_container button {
     padding: 0.5rem 1rem;
-    color: #ffd9008c;
-    background: #ffd90065;
+    color: #ffffff;
+    background: #ff2800;
     font-family: var(--font-family);
     font-weight: 500;
     font-size: 18px;

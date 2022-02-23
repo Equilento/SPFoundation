@@ -1,6 +1,6 @@
 .spf__header {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }
 
 .spf__header-content {
@@ -17,18 +17,27 @@
     font-family: var(--font-family);
     font-weight: 800;
     font-size: 62px;
+    /* line-height: 200px; */
+    padding-bottom: 100px;
+    
+    /* letter-spacing: -0.04em; */
+}
+.spf__header-content h2 {
+    font-family: var(--font-family);
+    font-weight: 800;
+    font-size: 46px;
     line-height: 75px;
-    letter-spacing: -0.04em;
+    /* letter-spacing: -0.04em; */
 }
 
 .spf__header-content p {
     font-family: var(--font-family);
-    font-weight: 400;
+    font-weight: 200;
     font-size: 20px;
     line-height: 28px;
-    color: var(--color-text);
-
+    color:aliceblue;
     margin-top: 1.5rem;
+    margin-bottom: 4rem;
 }
 
 .spf__header-content__input {

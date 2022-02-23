@@ -18,19 +18,19 @@ a {
 {
 
     /* ff 3.6+ */
-    background:-moz-radial-gradient(circle at 10% 4%, rgba(0, 40, 83, 1) 0%, rgba(4, 12, 24, 1) 16%);
+    background:-moz-radial-gradient(circle at 10% 4%, rgba(0, 40, 83, 1) 0%, rgba(4, 12, 24, 1) 50%);
 
     /* safari 5.1+,chrome 10+ */
-    background:-webkit-radial-gradient(circle at 10% 4%, rgba(0, 40, 83, 1) 0%, rgba(4, 12, 24, 1) 16%);
+    background:-webkit-radial-gradient(circle at 10% 4%, rgba(0, 40, 83, 1) 0%, rgba(4, 12, 24, 1) 50%);
 
     /* opera 11.10+ */
-    background:-o-radial-gradient(circle at 10% 4%, rgba(0, 40, 83, 1) 0%, rgba(4, 12, 24, 1) 16%);
+    background:-o-radial-gradient(circle at 10% 4%, rgba(0, 40, 83, 1) 0%, rgba(4, 12, 24, 1) 50%);
 
     /* ie 10+ */
-    background:-ms-radial-gradient(circle at 10% 4%, rgba(0, 40, 83, 1) 0%, rgba(4, 12, 24, 1) 16%);
+    background:-ms-radial-gradient(circle at 10% 4%, rgba(0, 40, 83, 1) 0%, rgba(4, 12, 24, 1) 50%);
 
     /* global 92%+ browsers support */
-    background:radial-gradient(circle at 10% 4%, rgba(0, 40, 83, 1) 0%, rgba(4, 12, 24, 1) 16%);
+    background:radial-gradient(circle at 10% 4%, rgba(0, 40, 83, 1) 0%, rgba(4, 12, 24, 1) 50%);
 
 }
 

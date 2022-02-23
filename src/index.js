@@ -1,7 +1,10 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
 
-import App from './App';
-import './index.css';
+import App from "./App";
+import OurWork from "./OurWork";
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import "./index.css";
+
+ReactDOM.render(<OurWork />, document.getElementById("root"));
+ReactDOM.render(<App />, document.getElementById("root"));
