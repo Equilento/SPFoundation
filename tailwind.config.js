@@ -1,5 +1,3 @@
-const baseConfig = require("../scaffold/tailwind.config.js");
-
 /**
  * Calculates a rem value for spacing from spacing in pixels
  * @param {number} px spacing in pixels
