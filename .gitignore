@@ -1,26 +1,34 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# Secrets
+**/.env
+**/.env.local
+**/.env.development.local
+**/.env.test.local
+**/.env.production.local
+**/.env.staging.local
 
-# dependencies
-/node_modules
-/.pnp
-.pnp.js
+# Misc. .log files
+**/npm-debug.log*
+**/.pnpm-debug.log*
+**/yarn-debug.log*
+**/yarn-error.log*
+**/build-storybook.log*
+**/*.log
+**/build.output
+**/deploy.output
 
-# testing
-/coverage
+# Runtime data
+**/*.pid
+**/*.seed
+**/*.pid.lock
 
-# production
-/build
+# IDE specific
+**/.vscode
 
-# misc
-.DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+# OS specific
+**/.DS_Store
 
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# vscode
-.vscode
+# Production build or library dist files
+**/dist
+**/build
+**/storybook-static
+node_modules
