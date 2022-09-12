@@ -1,59 +1,204 @@
-/* eslint-disable quotes */
-module.exports = {
-  env: {
-    browser: true,
-    es6: true,
-  },
-  extends: ["plugin:react/recommended", "airbnb"],
-  globals: {
-    Atomics: "readonly",
-    SharedArrayBuffer: "readonly",
-  },
-  parserOptions: {
-    ecmaFeatures: {
-      jsx: true,
+const path = require("path");
+
+/**
+ * Extend template config to use provided `tsconfig.json` files for parsing and resolution.
+ * This is especially useful when using path aliases from tsconfig
+ * @param {Object} config eslint config to extend
+ * @param {Array<string>} tsPaths a non-empty string array of tsconfig paths
+ */
+const useTSConfig = (config, tsPaths) => {
+  if (!config) {
+    throw new Error(
+      "[useTSPaths] No config received. Config should be a valid eslint config object"
+    );
+  }
+  if (!(tsPaths instanceof Array) || !tsPaths.length) {
+    throw new Error(
+      "[useTSPaths] tsPaths shoud be a non-empty array of string paths"
+    );
+  }
+
+  return {
+    ...config,
+    parserOptions: { ...config.parserOptions, project: tsPaths },
+    settings: {
+      ...config.settings,
+      "import/resolver": {
+        ...config.settings["import/resolver"],
+        typescript: {
+          ...config.settings["import/resolver"]?.typescript,
+          project: tsPaths,
+        },
+      },
     },
-    ecmaVersion: 2018,
-    sourceType: "module",
-  },
-  parser: "babel-eslint",
-  plugins: ["react"],
-  rules: {
-    "import/extensions": 0,
-    "react/prop-types": 0,
-    "linebreak-style": 0,
-    "react/state-in-constructor": 0,
-    "import/prefer-default-export": 0,
-    "max-len": [2, 550],
-    "no-multiple-empty-lines": [
-      "error",
-      {
-        max: 1,
-        maxEOF: 1,
-      },
-    ],
-    "no-underscore-dangle": [
-      "error",
-      {
-        allow: ["_d", "_dh", "_h", "_id", "_m", "_n", "_t", "_text"],
-      },
-    ],
-    "object-curly-newline": 0,
-    "react/jsx-filename-extension": 0,
-    "react/jsx-one-expression-per-line": 0,
-    "jsx-a11y/click-events-have-key-events": 0,
-    "jsx-a11y/alt-text": 0,
-    "jsx-a11y/no-autofocus": 0,
-    "jsx-a11y/no-static-element-interactions": 0,
-    "react/no-array-index-key": 0,
-    quotes: 0,
-    "jsx-a11y/anchor-is-valid": [
-      "error",
-      {
-        components: ["Link"],
-        specialLink: ["to", "hrefLeft", "hrefRight"],
-        aspects: ["noHref", "invalidHref", "preferButton"],
-      },
-    ],
-  },
+  };
 };
+
+module.exports = useTSConfig(
+  {
+    parser: "@typescript-eslint/parser",
+    parserOptions: {
+      ecmaVersion: 2021,
+      sourceType: "module",
+    },
+    settings: {
+      "import/parsers": {
+        "@typescript-eslint/parser": [".ts", ".tsx"],
+      },
+      "import/resolver": {
+        typescript: {},
+      },
+    },
+    plugins: ["promise", "import"],
+    extends: [
+      "google",
+      "eslint:recommended",
+      "plugin:import/errors",
+      "plugin:import/warnings",
+      "plugin:import/typescript",
+      "plugin:promise/recommended",
+      "plugin:@typescript-eslint/recommended",
+    ],
+    ignorePatterns: [
+      "build/",
+      "dist/",
+      "node_modules/",
+      ".eslintrc.js",
+      "vite.config.ts",
+      "setupTests.js",
+      "jest.config.js",
+      "postcss.config.js",
+      "tailwind.config.js",
+    ],
+    rules: {
+      // Using this rule would mean that every object literal should have quotes as properties, as such { "foo": true }
+      // Which is pretty outdated behaviour
+      "quote-props": "off",
+
+      // Removed rule "disallow the use of console" from recommended eslint rules
+      "no-console": "off",
+
+      // Warn against template literal placeholder syntax in regular strings
+      // i.e. "${foo}" should be illegal as it's most likely a mistake, trying to write `${foo}`
+      "no-template-curly-in-string": 1,
+
+      // Warn if return statements do not either always or never specify values
+      "consistent-return": 1,
+
+      // Warn if no return statements in callbacks of array methods
+      "array-callback-return": 1,
+
+      // Require the use of === and !==
+      eqeqeq: 2,
+
+      // Disallow the use of alert, confirm, and prompt
+      "no-alert": 2,
+
+      // Disallow the use of `arguments.caller` or `arguments.callee`
+      // This is an old JS practice not used as much anymore
+      // We're disallowing it nonetheless
+      "no-caller": 2,
+
+      // Disallow the use of eval()
+      "no-eval": 2,
+
+      // Warn against extending native types
+      "no-extend-native": 2,
+
+      // Warn against unnecessary calls to .bind()
+      "no-extra-bind": 1,
+
+      // Warn against unnecessary labels
+      "no-extra-label": 1,
+
+      // Disallow leading or trailing decimal points in numeric literals
+      "no-floating-decimal": 2,
+
+      // Type conversions should be as clear as possible (i.e. Number("4") rather than +"4")
+      "no-implicit-coercion": 2,
+
+      // Function declarations and expressions inside loop statements seem like a baad practice
+      "no-loop-func": 2,
+
+      // Disallow new operators with the Function object
+      "no-new-func": 2,
+
+      // Using new operators with the String, Number, and Boolean objects
+      // is really unnecessary
+      "no-new-wrappers": 2,
+
+      // Disallow throwing exceptions that are anything other than `Error(<message>)`
+      "no-throw-literal": 2,
+
+      // Require using Error objects as Promise rejection reasons
+      "prefer-promise-reject-errors": 2,
+
+      // Enforce “for” loop update clause moving the counter in the right direction
+      "for-direction": 2,
+
+      // Enforce return statements in getters
+      "getter-return": 2,
+
+      // Disallow await inside of loops
+      // This is a good practice most of the time, so it makes sense
+      // to override it only when (and if) really necessary
+      "no-await-in-loop": 2,
+
+      // Disallow comparing against -0
+      "no-compare-neg-zero": 2,
+
+      // Warn against catch clause parameters from shadowing variables in the outer scope
+      "no-catch-shadow": 1,
+
+      // Disallow identifiers from shadowing restricted names
+      "no-shadow-restricted-names": 2,
+
+      // Warn against string concatenation with __dirname and __filename
+      "no-path-concat": 1,
+
+      // Prefer using arrow functions for callbacks
+      "prefer-arrow-callback": 1,
+
+      // Swotch strings to single quote (offset recommended)
+      quotes: "off",
+
+      // Allow spacing in curly braces (we're actually using this for readability)
+      "object-curly-spacing": "off",
+
+      // Max len is handled by prettier, if it turns out to be longer it's probbably a comment
+      "max-len": "off",
+
+      // Indentation is handled by prettier
+      indent: "off",
+
+      // Allow "?" and ":" to be at the beginning of the line in ternary expressions
+      "operator-linebreak": "off",
+
+      // Produces false positives in long function arguments, handled by prettier anyhow
+      "comma-dangle": "off",
+
+      // We use TypeScript for type annotation, JS Doc is here as documentation
+      "valid-jsdoc": "off",
+
+      // Allow for non-null asssertion as they're not inferred by TS with cloud functions
+      "@typescript-eslint/no-non-null-assertion": "off",
+
+      // Allow explicit any, but still avoid where possible
+      "@typescript-eslint/no-explicit-any": "off",
+
+      // we're using empty functions as fallback for undefined props
+      "@typescript-eslint/no-empty-function": "off",
+
+      // This just gets in the way
+      "import/no-named-as-default-member": "off",
+      "import/no-named-as-default": "off",
+
+      // we're turning this off as it produces false positives on imported namespaces (i.e. react)
+      "import/default": "off",
+
+      // no-case-declarations
+      "no-case-declarations": "off",
+    },
+  },
+  [path.join(__dirname, "tsconfig.json")]
+);
