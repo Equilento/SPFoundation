@@ -1,19 +1,32 @@
 /* eslint-disable quotes */
+import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom";
 import React from "react";
-import { Footer, Program, Header } from "./containers";
+import { Footer, Header } from "./containers";
 import { Navbar } from "./components";
-
 import "./App.css";
+import OurWork from './OurWork';
+import Board from "./Board";
+import { Switch } from "react-router";
 
 const App = () => (
   <div className="App">
     <div className="gradient__bg">
-      <Navbar />
-      <Header />
+    <Router>
+      <Switch>
+  <Navbar />
+  <Routes>
+    <Route path="/board" element={<Board />} />
+    <Route path='/ourwork' element={<OurWork />} />
+    {/* <Route path='/inspire' element={<Inspiration />} />
+    <Route path='/forum' element={<Forum />} /> */}
+  </Routes>
+  </Switch>
+</Router>
     </div>
-    <Program />
+    {/* <Program /> */}
     <Footer />
   </div>
 );
+
 
 export default App;

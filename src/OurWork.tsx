@@ -7,11 +7,12 @@ import "./App.css";
 const OurWork = () => (
   <div className="App">
     <div className="gradient__bg">
-      <Navbar />
+      <Header />
+      <Header />
+      <Header />
       <Header />
     </div>
     {/* <Program /> */}
-    <Footer />
   </div>
 );
 

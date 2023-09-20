@@ -1,5 +1,5 @@
 import React from 'react';
-import spfLogo from '../../logo.svg';
+import spfLogo from '../../logo.webp';
 import './footer.css';
 
 const Footer = () => (
