@@ -7,8 +7,8 @@ import "./App.css";
 const OurWork = () => (
   <div className="App">
     <div className="gradient__bg">
-      <Header />
       <Program />
+      <Header />
     </div>
     {/* <Program /> */}
   </div>
