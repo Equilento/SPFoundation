@@ -7,20 +7,25 @@ import "./App.css";
 import OurWork from './OurWork';
 import Board from "./Board";
 import { Switch } from "react-router";
+import Home from "./Home";
 
 const App = () => (
   <div className="App">
     <div className="gradient__bg">
     <Router>
-      <Switch>
+      {/* <Switch> */}
   <Navbar />
   <Routes>
-    <Route path="/board" element={<Board />} />
+
+    <Route path='/' element={<Home />} />
+    <Route path='/home' element={<Home />} />
+    <Route path='/board' element={<Board />} />
     <Route path='/ourwork' element={<OurWork />} />
+
     {/* <Route path='/inspire' element={<Inspiration />} />
     <Route path='/forum' element={<Forum />} /> */}
   </Routes>
-  </Switch>
+  {/* </Switch> */}
 </Router>
     </div>
     {/* <Program /> */}

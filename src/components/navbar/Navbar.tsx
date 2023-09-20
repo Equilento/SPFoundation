@@ -14,13 +14,13 @@ const Navbar = () => {
       </div>
       <div className="spf__navbar-links_container">
         <p>
-          <a href="#home">Home</a>
+          <a href="home">Home</a>
         </p>
         <p>
-          <a href="#ourwork">Our Work</a>
+          <a href="ourwork">Our Work</a>
         </p>
         <p>
-          <a href="#board">Board</a>
+          <a href="board">Board</a>
         </p>
         <p>
           <a href="#meet">Get Involved</a>
@@ -50,10 +50,10 @@ const Navbar = () => {
           <div className="spf__navbar-menu_container scale-up-center">
             <div className="spf__navbar-menu_container-links">
               <p>
-                <a href="#home">Home</a>
+                <a href="home">Home</a>
               </p>
               <p>
-                <a href="#program">What is SPF?</a>
+                <a href="program">What is SPF?</a>
               </p>
               <p>
                 <a href="#possibility">Open AI</a>
